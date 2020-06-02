@@ -1,0 +1,23 @@
+1、最新的工程进度：第8章，微信支付（还未开始）
+
+2、当前的测试网站（URL）：http://chrissell.natapp1.cc/sell/wechat/authorize?returnUrl=http://sell.com
+
+3、开启工程的步骤：
+   （1）运行centos虚拟机：用户名root，密码1230re0321re
+        注意：必须保证本地机器和VMware的Centos能够相互Ping通，否则将会出现微信无法打开上述url（前端丢失）
+        这里面有redis缓存，需要先打开虚拟机，否则无法访问网页
+   （2）运行natApp客户端，登陆命令：natapp.exe -authtoken=xxxx
+   （3）运行SpringBoot工程
+   （4）使用微信客户端打开上面的测试URL
+
+4、目前缺失的功能：
+    （1）微信支付功能：因为没有商户号，无法注册商户、获取H5支付证书，没有购买慕课网课程
+            1）缺失的组件：application.yml中：mchId、mchKey、keyPath等等
+                           退款时使用的H5.p21证数
+             （支付功能中的其余部分：后端代码、前端修改都已经完成）
+    （2）微信登陆、登出功能：第12章，因为没有服务号
+            1）缺失的组件：application.yml中：openAppId、openAppSecret
+             （第12章的代码都已经编写，但是并没用开启使用）
+
+5、没有进行部署
+    因为总是出错：各种错误，花了2h没解决，因此不再进行打包操作（不过有记录下可在windows上运行的IDEA打包方法）

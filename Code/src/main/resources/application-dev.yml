@@ -1,0 +1,67 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /sell
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+    username: chris
+    password: 1230re0321re
+  # JPA：Java Persistence API，Java持久化API，ORM方案的规范，将数据表和实体类关联
+  jpa:
+    hibernate:          #hiberna属于其中一种JPA框架
+      ddl-auto: update  #采用更新数据表的方式，插入数据
+    show-sql: true      #在终端显示SQL语句，方便调试
+  jackson:
+    default-property-inclusion: non_null
+  #配置freemarker
+  freemarker:
+    request-context-attribute: request
+    suffix: .ftl
+    template-loader-path: classpath:/templates  #不配置模板路径： 默认情况下，也是这个路径
+    charset: utf-8
+    cache: false
+    content-type: text/html; charset=utf-8
+    enabled: true
+    expose-request-attributes: true
+    expose-session-attributes: true
+    check-template-location: true
+  redis:
+    host: 192.168.154.131
+    port: 6379
+
+
+
+
+#微信公众号的配置
+wechat:
+  mpAppId: wx95022e7cf64fc8ab
+  mpAppSecret: 42753b826eef0e3e1fd1c8465395fb73
+#  下面这些信息都是照搬 廖师兄 源码：因为微信支付做不了（没有商户平台，不想使用营业执照注册）
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+  mchId: 1483469312
+  mchKey: C5245D70627C1F8E9964D494B0735024
+  keyPath: weixin_cert/h5.p12
+  notifyUrl: http://chrissell.natapp1.cc/sell/pay/notify
+  # 配置微信公众号里面的白名单：允许发送消息的名单
+  templateId:
+    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+
+# 这里的名字出现大小写、单词组合时，必须使用‘-’隔开，eg：project-url
+project-url:
+  wechatMpAuthorize: http://chrissell.natapp1.cc
+  wechatOpenAuthorize: http://chrissell.natapp1.cc
+  sell: http://chrissell.natapp1.cc
+
+#设置日志级别
+logging:
+  level:
+    com.wechatorder.demo.dataobject.mapper: trace
+
+# 使用配置文件的方式来使用Mybatis （本工程提供注解方式使用mybatis）
+# myBatis的配置文件路径
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
